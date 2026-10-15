@@ -4,7 +4,7 @@ import { Check, X, Pencil } from "lucide-react";
 import { PageHeader, Panel, Pill, Conf } from "@/components/AppShell";
 import { exceptions as seed, docById, type Exception } from "@/lib/data";
 
-export const Route = createFileRoute("/curation")({
+export const Route = createFileRoute("/refinery/curation")({
   head: () => ({
     meta: [
       { title: "Curation Workbench — Data Toolkit for Sheets" },

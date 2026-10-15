@@ -5,7 +5,7 @@ import { PageHeader, Panel, Pill } from "@/components/AppShell";
 import { mcpTools, chunks, docById, incomeTable } from "@/lib/data";
 import { hybridSearch } from "@/lib/search";
 
-export const Route = createFileRoute("/agents")({
+export const Route = createFileRoute("/refinery/agents")({
   head: () => ({
     meta: [
       { title: "MCP & Agent Endpoints — Data Toolkit for Sheets" },

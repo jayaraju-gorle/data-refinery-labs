@@ -3,10 +3,10 @@ import { useState } from "react";
 import { Play, Send, Plus, Trash2 } from "lucide-react";
 import { PageHeader, Panel, Pill } from "@/components/AppShell";
 
-export const Route = createFileRoute("/api-tool")({
+export const Route = createFileRoute("/try")({
   head: () => ({
     meta: [
-      { title: "API Tool — Data Toolkit for Sheets" },
+      { title: "Data Tools — Data Toolkit for Sheets" },
       { name: "description", content: "Test, format and schedule API calls straight into Google Sheets." },
       { property: "og:title", content: "API Tool — Data Toolkit for Sheets" },
       { property: "og:description", content: "Test, format and schedule API calls to Google Sheets." },

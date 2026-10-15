@@ -5,7 +5,7 @@ import { PageHeader, Panel, Pill } from "@/components/AppShell";
 import { hybridSearch } from "@/lib/search";
 import { docById } from "@/lib/data";
 
-export const Route = createFileRoute("/search")({
+export const Route = createFileRoute("/refinery/search")({
   head: () => ({
     meta: [
       { title: "Hybrid Search — Data Toolkit for Sheets" },

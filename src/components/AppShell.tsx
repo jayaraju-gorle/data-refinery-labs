@@ -1,64 +1,75 @@
-import { Link, useRouterState } from "@tanstack/react-router";
-import type { ReactNode } from "react";
-import {
-  LayoutDashboard, Inbox, Layers, ShieldCheck, Search, Bot, Send, Sheet, Plug, Building2, LifeBuoy,
-} from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import { useState, type ReactNode } from "react";
+import { Home, Send, Trophy, Search, Newspaper, Layers, Menu, X, Youtube, Instagram } from "lucide-react";
 
 const nav = [
-  { to: "/", label: "Overview", icon: LayoutDashboard, group: "Data Toolkit" },
-  { to: "/api-tool", label: "API Tool", icon: Plug, group: "Data Toolkit" },
-  { to: "/enterprise", label: "Refinery Overview", icon: Building2, group: "Enterprise Document Refinery" },
-  { to: "/ingestion", label: "1 · Sourcing & Ingestion", icon: Inbox, group: "Enterprise Document Refinery" },
-  { to: "/refinery", label: "2 · Processing & JSON", icon: Layers, group: "Enterprise Document Refinery" },
-  { to: "/curation", label: "3 · HITL Review", icon: ShieldCheck, group: "Enterprise Document Refinery" },
-  { to: "/search", label: "4 · Hybrid Search", icon: Search, group: "Enterprise Document Refinery" },
-  { to: "/agents", label: "5 · MCP & Agents", icon: Bot, group: "Enterprise Document Refinery" },
-  { to: "/delivery", label: "6 · Export to Sheets", icon: Send, group: "Enterprise Document Refinery" },
-  { to: "/docs", label: "Documentation & Support", icon: LifeBuoy, group: "Help" },
+  { to: "/", label: "Home", icon: Home },
+  { to: "/try", label: "Data Tools", icon: Send },
+  { to: "/cricket-data", label: "Cricket Data", icon: Trophy },
+  { to: "/linkedin-search", label: "Linkedin Data", icon: Search },
+  { to: "/blog", label: "Blog", icon: Newspaper },
+  { to: "/refinery", label: "Data Refinery", icon: Layers, isNew: true },
 ] as const;
 
+const SITE = "https://www.datatoolkitforsheets.com";
+export const MARKETPLACE = "https://workspace.google.com/marketplace/search/data%20toolkit%20for%20sheets";
+
 export function AppShell({ children }: { children: ReactNode }) {
-  const path = useRouterState({ select: (s) => s.location.pathname });
-  let lastGroup = "";
+  const [open, setOpen] = useState(false);
   return (
-    <div className="flex min-h-screen bg-background font-sans text-foreground">
-      <aside className="sticky top-0 hidden h-screen w-64 shrink-0 flex-col bg-sidebar text-sidebar-foreground md:flex">
-        <div className="flex items-center gap-2 border-b border-sidebar-border px-5 py-4">
-          <Sheet className="h-6 w-6 text-sidebar-primary" />
-          <div>
-            <div className="text-sm font-semibold text-sidebar-accent-foreground">Data Toolkit for Sheets</div>
-            <div className="text-[11px] uppercase tracking-wider opacity-60">APIs · Documents · Sheets</div>
-          </div>
+    <div className="flex min-h-screen flex-col bg-background font-sans text-foreground">
+      <header className="bg-gradient-to-br from-brand-from to-brand-to py-4 text-brand-foreground shadow-md">
+        <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-5">
+          <Link to="/" className="flex items-center" aria-label="Data Toolkit Homepage">
+            <img src="/logo.png" alt="Data Toolkit for Sheets Logo" width={50} height={50} className="mr-4 h-[50px] w-[50px]" />
+            <div>
+              <div className="text-xl font-semibold leading-tight md:text-2xl">Welcome to Data Toolkit for Sheets</div>
+              <p className="text-sm opacity-90">Advanced data tools to supercharge your spreadsheet experience</p>
+            </div>
+          </Link>
+          <button className="md:hidden" aria-label="Toggle navigation" aria-expanded={open} onClick={() => setOpen(!open)}>
+            {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
         </div>
-        <nav className="flex-1 overflow-y-auto px-3 py-4">
-          {nav.map((n) => {
-            const header = n.group !== lastGroup ? n.group : null;
-            lastGroup = n.group;
-            const active = n.to === "/" ? path === "/" : path.startsWith(n.to);
-            return (
-              <div key={n.to}>
-                {header && <div className="mb-1 mt-4 px-2 text-[10px] font-semibold uppercase tracking-widest opacity-50 first:mt-0">{header}</div>}
+        <nav className={`mx-auto mt-3 max-w-[1200px] px-5 ${open ? "block" : "hidden"} md:block`}>
+          <ul className="flex flex-col gap-1 md:flex-row md:flex-wrap">
+            {nav.map((n) => (
+              <li key={n.to}>
                 <Link
                   to={n.to}
-                  className={`flex items-center gap-2.5 rounded-md px-2.5 py-2 text-sm transition-colors ${active ? "bg-sidebar-accent text-sidebar-accent-foreground" : "hover:bg-sidebar-accent/60"}`}
+                  onClick={() => setOpen(false)}
+                  activeOptions={{ exact: n.to === "/" }}
+                  className="flex items-center gap-2 rounded-md px-3 py-1.5 text-sm font-medium opacity-90 hover:bg-brand-foreground/15 hover:opacity-100"
+                  activeProps={{ className: "bg-brand-foreground/20 opacity-100" }}
                 >
-                  <n.icon className={`h-4 w-4 ${active ? "text-sidebar-primary" : ""}`} />
+                  <n.icon className="h-4 w-4" />
                   {n.label}
+                  {"isNew" in n && <span className="rounded bg-brand-foreground px-1.5 text-[10px] font-bold uppercase text-primary">New</span>}
                 </Link>
-              </div>
-            );
-          })}
+              </li>
+            ))}
+          </ul>
         </nav>
-        <div className="border-t border-sidebar-border px-5 py-3 text-[11px] opacity-60">Enterprise preview · demo data</div>
-      </aside>
-      <div className="min-w-0 flex-1">
-        <div className="flex gap-1 overflow-x-auto border-b bg-card px-3 py-2 md:hidden">
-          {nav.map((n) => (
-            <Link key={n.to} to={n.to} className="whitespace-nowrap rounded px-2 py-1 text-xs" activeProps={{ className: "bg-accent text-accent-foreground" }} activeOptions={{ exact: n.to === "/" }}>{n.label}</Link>
-          ))}
+      </header>
+
+      <main className="mx-auto w-full max-w-[1200px] flex-1 px-5 py-8">{children}</main>
+
+      <footer className="bg-footer py-8 text-footer-foreground">
+        <div className="mx-auto flex max-w-[1200px] flex-col items-center gap-4 px-5 text-sm">
+          <div className="flex items-center gap-5">
+            <img src="/logo.png" alt="Data Toolkit for Sheets Logo" width={60} height={60} className="h-[60px] w-[60px]" />
+            <a href="https://www.youtube.com/@DataToolkitForSheets" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="hover:text-brand-foreground"><Youtube className="h-6 w-6" /></a>
+            <a href="https://www.instagram.com/datatoolkitforsheets/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-brand-foreground"><Instagram className="h-6 w-6" /></a>
+          </div>
+          <div className="flex flex-wrap justify-center gap-5">
+            <a href={`${SITE}/privacy.html`} className="hover:text-brand-foreground">Privacy Policy</a>
+            <a href={`${SITE}/terms.html`} className="hover:text-brand-foreground">Terms of Service</a>
+            <a href={`${SITE}/support.html`} className="hover:text-brand-foreground">Support</a>
+            <a href={MARKETPLACE} target="_blank" rel="noreferrer" className="hover:text-brand-foreground">Install from Google Workspace Marketplace</a>
+          </div>
+          <div className="text-xs opacity-70">© {new Date().getFullYear()} Data Toolkit for Sheets. All rights reserved.</div>
         </div>
-        <main className="mx-auto max-w-7xl px-6 py-8">{children}</main>
-      </div>
+      </footer>
     </div>
   );
 }
