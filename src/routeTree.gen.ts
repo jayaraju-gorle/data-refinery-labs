@@ -12,7 +12,6 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as CricketDataRouteImport } from './routes/cricket-data'
-import { Route as LinkedinSearchRouteImport } from './routes/linkedin-search'
 import { Route as RefineryRouteImport } from './routes/refinery'
 import { Route as TryRouteImport } from './routes/try'
 import { Route as RefineryIndexRouteImport } from './routes/refinery.index'
@@ -36,11 +35,6 @@ const BlogRoute = BlogRouteImport.update({
 const CricketDataRoute = CricketDataRouteImport.update({
   id: '/cricket-data',
   path: '/cricket-data',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LinkedinSearchRoute = LinkedinSearchRouteImport.update({
-  id: '/linkedin-search',
-  path: '/linkedin-search',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RefineryRoute = RefineryRouteImport.update({
@@ -93,7 +87,6 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/blog': typeof BlogRoute
   '/cricket-data': typeof CricketDataRoute
-  '/linkedin-search': typeof LinkedinSearchRoute
   '/refinery': typeof RefineryRouteWithChildren
   '/try': typeof TryRoute
   '/refinery/agents': typeof RefineryAgentsRoute
@@ -108,7 +101,6 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/blog': typeof BlogRoute
   '/cricket-data': typeof CricketDataRoute
-  '/linkedin-search': typeof LinkedinSearchRoute
   '/try': typeof TryRoute
   '/refinery/agents': typeof RefineryAgentsRoute
   '/refinery/curation': typeof RefineryCurationRoute
@@ -123,7 +115,6 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/blog': typeof BlogRoute
   '/cricket-data': typeof CricketDataRoute
-  '/linkedin-search': typeof LinkedinSearchRoute
   '/refinery': typeof RefineryRouteWithChildren
   '/try': typeof TryRoute
   '/refinery/agents': typeof RefineryAgentsRoute
@@ -140,7 +131,6 @@ export interface FileRouteTypes {
     | '/'
     | '/blog'
     | '/cricket-data'
-    | '/linkedin-search'
     | '/refinery'
     | '/try'
     | '/refinery/agents'
@@ -155,7 +145,6 @@ export interface FileRouteTypes {
     | '/'
     | '/blog'
     | '/cricket-data'
-    | '/linkedin-search'
     | '/try'
     | '/refinery/agents'
     | '/refinery/curation'
@@ -169,7 +158,6 @@ export interface FileRouteTypes {
     | '/'
     | '/blog'
     | '/cricket-data'
-    | '/linkedin-search'
     | '/refinery'
     | '/try'
     | '/refinery/agents'
@@ -185,7 +173,6 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BlogRoute: typeof BlogRoute
   CricketDataRoute: typeof CricketDataRoute
-  LinkedinSearchRoute: typeof LinkedinSearchRoute
   RefineryRoute: typeof RefineryRouteWithChildren
   TryRoute: typeof TryRoute
 }
@@ -211,13 +198,6 @@ declare module '@tanstack/react-router' {
       path: '/cricket-data'
       fullPath: '/cricket-data'
       preLoaderRoute: typeof CricketDataRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/linkedin-search': {
-      id: '/linkedin-search'
-      path: '/linkedin-search'
-      fullPath: '/linkedin-search'
-      preLoaderRoute: typeof LinkedinSearchRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/refinery': {
@@ -314,7 +294,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BlogRoute: BlogRoute,
   CricketDataRoute: CricketDataRoute,
-  LinkedinSearchRoute: LinkedinSearchRoute,
   RefineryRoute: RefineryRouteWithChildren,
   TryRoute: TryRoute,
 }
