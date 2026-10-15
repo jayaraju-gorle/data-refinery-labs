@@ -10,6 +10,10 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BlogRouteImport } from './routes/blog'
+import { Route as CricketDataRouteImport } from './routes/cricket-data'
+import { Route as LinkedinSearchRouteImport } from './routes/linkedin-search'
+import { Route as RefineryRouteImport } from './routes/refinery'
 import { Route as TryRouteImport } from './routes/try'
 import { Route as RefineryIndexRouteImport } from './routes/refinery.index'
 import { Route as RefineryAgentsRouteImport } from './routes/refinery.agents'
@@ -24,49 +28,73 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CricketDataRoute = CricketDataRouteImport.update({
+  id: '/cricket-data',
+  path: '/cricket-data',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LinkedinSearchRoute = LinkedinSearchRouteImport.update({
+  id: '/linkedin-search',
+  path: '/linkedin-search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RefineryRoute = RefineryRouteImport.update({
+  id: '/refinery',
+  path: '/refinery',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TryRoute = TryRouteImport.update({
   id: '/try',
   path: '/try',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RefineryIndexRoute = RefineryIndexRouteImport.update({
-  id: '/refinery/',
-  path: '/refinery/',
-  getParentRoute: () => rootRouteImport,
+  id: '/',
+  path: '/',
+  getParentRoute: () => RefineryRoute,
 } as any)
 const RefineryAgentsRoute = RefineryAgentsRouteImport.update({
-  id: '/refinery/agents',
-  path: '/refinery/agents',
-  getParentRoute: () => rootRouteImport,
+  id: '/agents',
+  path: '/agents',
+  getParentRoute: () => RefineryRoute,
 } as any)
 const RefineryCurationRoute = RefineryCurationRouteImport.update({
-  id: '/refinery/curation',
-  path: '/refinery/curation',
-  getParentRoute: () => rootRouteImport,
+  id: '/curation',
+  path: '/curation',
+  getParentRoute: () => RefineryRoute,
 } as any)
 const RefineryDeliveryRoute = RefineryDeliveryRouteImport.update({
-  id: '/refinery/delivery',
-  path: '/refinery/delivery',
-  getParentRoute: () => rootRouteImport,
+  id: '/delivery',
+  path: '/delivery',
+  getParentRoute: () => RefineryRoute,
 } as any)
 const RefineryIngestionRoute = RefineryIngestionRouteImport.update({
-  id: '/refinery/ingestion',
-  path: '/refinery/ingestion',
-  getParentRoute: () => rootRouteImport,
+  id: '/ingestion',
+  path: '/ingestion',
+  getParentRoute: () => RefineryRoute,
 } as any)
 const RefineryProcessingRoute = RefineryProcessingRouteImport.update({
-  id: '/refinery/processing',
-  path: '/refinery/processing',
-  getParentRoute: () => rootRouteImport,
+  id: '/processing',
+  path: '/processing',
+  getParentRoute: () => RefineryRoute,
 } as any)
 const RefinerySearchRoute = RefinerySearchRouteImport.update({
-  id: '/refinery/search',
-  path: '/refinery/search',
-  getParentRoute: () => rootRouteImport,
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => RefineryRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/blog': typeof BlogRoute
+  '/cricket-data': typeof CricketDataRoute
+  '/linkedin-search': typeof LinkedinSearchRoute
+  '/refinery': typeof RefineryRouteWithChildren
   '/try': typeof TryRoute
   '/refinery/agents': typeof RefineryAgentsRoute
   '/refinery/curation': typeof RefineryCurationRoute
@@ -78,6 +106,9 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/blog': typeof BlogRoute
+  '/cricket-data': typeof CricketDataRoute
+  '/linkedin-search': typeof LinkedinSearchRoute
   '/try': typeof TryRoute
   '/refinery/agents': typeof RefineryAgentsRoute
   '/refinery/curation': typeof RefineryCurationRoute
@@ -90,6 +121,10 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/blog': typeof BlogRoute
+  '/cricket-data': typeof CricketDataRoute
+  '/linkedin-search': typeof LinkedinSearchRoute
+  '/refinery': typeof RefineryRouteWithChildren
   '/try': typeof TryRoute
   '/refinery/agents': typeof RefineryAgentsRoute
   '/refinery/curation': typeof RefineryCurationRoute
@@ -103,6 +138,10 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/blog'
+    | '/cricket-data'
+    | '/linkedin-search'
+    | '/refinery'
     | '/try'
     | '/refinery/agents'
     | '/refinery/curation'
@@ -114,6 +153,9 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/blog'
+    | '/cricket-data'
+    | '/linkedin-search'
     | '/try'
     | '/refinery/agents'
     | '/refinery/curation'
@@ -125,6 +167,10 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/blog'
+    | '/cricket-data'
+    | '/linkedin-search'
+    | '/refinery'
     | '/try'
     | '/refinery/agents'
     | '/refinery/curation'
@@ -137,14 +183,11 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BlogRoute: typeof BlogRoute
+  CricketDataRoute: typeof CricketDataRoute
+  LinkedinSearchRoute: typeof LinkedinSearchRoute
+  RefineryRoute: typeof RefineryRouteWithChildren
   TryRoute: typeof TryRoute
-  RefineryAgentsRoute: typeof RefineryAgentsRoute
-  RefineryCurationRoute: typeof RefineryCurationRoute
-  RefineryDeliveryRoute: typeof RefineryDeliveryRoute
-  RefineryIngestionRoute: typeof RefineryIngestionRoute
-  RefineryProcessingRoute: typeof RefineryProcessingRoute
-  RefinerySearchRoute: typeof RefinerySearchRoute
-  RefineryIndexRoute: typeof RefineryIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -156,6 +199,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cricket-data': {
+      id: '/cricket-data'
+      path: '/cricket-data'
+      fullPath: '/cricket-data'
+      preLoaderRoute: typeof CricketDataRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/linkedin-search': {
+      id: '/linkedin-search'
+      path: '/linkedin-search'
+      fullPath: '/linkedin-search'
+      preLoaderRoute: typeof LinkedinSearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/refinery': {
+      id: '/refinery'
+      path: '/refinery'
+      fullPath: '/refinery'
+      preLoaderRoute: typeof RefineryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/try': {
       id: '/try'
       path: '/try'
@@ -165,59 +236,67 @@ declare module '@tanstack/react-router' {
     }
     '/refinery/': {
       id: '/refinery/'
-      path: '/refinery'
+      path: '/'
       fullPath: '/refinery/'
       preLoaderRoute: typeof RefineryIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof RefineryRoute
     }
     '/refinery/agents': {
       id: '/refinery/agents'
-      path: '/refinery/agents'
+      path: '/agents'
       fullPath: '/refinery/agents'
       preLoaderRoute: typeof RefineryAgentsRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof RefineryRoute
     }
     '/refinery/curation': {
       id: '/refinery/curation'
-      path: '/refinery/curation'
+      path: '/curation'
       fullPath: '/refinery/curation'
       preLoaderRoute: typeof RefineryCurationRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof RefineryRoute
     }
     '/refinery/delivery': {
       id: '/refinery/delivery'
-      path: '/refinery/delivery'
+      path: '/delivery'
       fullPath: '/refinery/delivery'
       preLoaderRoute: typeof RefineryDeliveryRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof RefineryRoute
     }
     '/refinery/ingestion': {
       id: '/refinery/ingestion'
-      path: '/refinery/ingestion'
+      path: '/ingestion'
       fullPath: '/refinery/ingestion'
       preLoaderRoute: typeof RefineryIngestionRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof RefineryRoute
     }
     '/refinery/processing': {
       id: '/refinery/processing'
-      path: '/refinery/processing'
+      path: '/processing'
       fullPath: '/refinery/processing'
       preLoaderRoute: typeof RefineryProcessingRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof RefineryRoute
     }
     '/refinery/search': {
       id: '/refinery/search'
-      path: '/refinery/search'
+      path: '/search'
       fullPath: '/refinery/search'
       preLoaderRoute: typeof RefinerySearchRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof RefineryRoute
     }
   }
 }
 
-const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  TryRoute: TryRoute,
+interface RefineryRouteChildren {
+  RefineryAgentsRoute: typeof RefineryAgentsRoute
+  RefineryCurationRoute: typeof RefineryCurationRoute
+  RefineryDeliveryRoute: typeof RefineryDeliveryRoute
+  RefineryIngestionRoute: typeof RefineryIngestionRoute
+  RefineryProcessingRoute: typeof RefineryProcessingRoute
+  RefinerySearchRoute: typeof RefinerySearchRoute
+  RefineryIndexRoute: typeof RefineryIndexRoute
+}
+
+const RefineryRouteChildren: RefineryRouteChildren = {
   RefineryAgentsRoute: RefineryAgentsRoute,
   RefineryCurationRoute: RefineryCurationRoute,
   RefineryDeliveryRoute: RefineryDeliveryRoute,
@@ -225,6 +304,19 @@ const rootRouteChildren: RootRouteChildren = {
   RefineryProcessingRoute: RefineryProcessingRoute,
   RefinerySearchRoute: RefinerySearchRoute,
   RefineryIndexRoute: RefineryIndexRoute,
+}
+
+const RefineryRouteWithChildren = RefineryRoute._addFileChildren(
+  RefineryRouteChildren,
+)
+
+const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
+  BlogRoute: BlogRoute,
+  CricketDataRoute: CricketDataRoute,
+  LinkedinSearchRoute: LinkedinSearchRoute,
+  RefineryRoute: RefineryRouteWithChildren,
+  TryRoute: TryRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
