@@ -16,12 +16,12 @@ export const Route = createFileRoute("/refinery/")({
 });
 
 const stages = [
-  { to: "/ingestion", icon: Inbox, n: "01", t: "Source & Ingest", d: "Filings, transcripts, statements, research, news via API, SFTP, RSS, web." },
-  { to: "/refinery", icon: Layers, n: "02", t: "Parse & Enrich", d: "Layout-aware parsing, OCR, chunking, entity resolution, JSON contracts." },
-  { to: "/curation", icon: ShieldCheck, n: "03", t: "Curate (HITL)", d: "Exception routing for low-confidence extractions with full audit trail." },
-  { to: "/search", icon: Search, n: "04", t: "Retrieve", d: "Hybrid BM25 + dense vectors, re-ranking, cited bounding boxes." },
-  { to: "/agents", icon: Bot, n: "05", t: "Serve Agents", d: "MCP tools for LLMs and autonomous agents to consume the refinery." },
-  { to: "/delivery", icon: Send, n: "06", t: "Deliver", d: "Spreadsheet & data-toolkit exports, event webhooks to workflows." },
+  { to: "/refinery/ingestion", icon: Inbox, n: "01", t: "Source & Ingest", d: "Filings, transcripts, statements, research, news via API, SFTP, RSS, web." },
+  { to: "/refinery/processing", icon: Layers, n: "02", t: "Parse & Enrich", d: "Layout-aware parsing, OCR, chunking, entity resolution, JSON contracts." },
+  { to: "/refinery/curation", icon: ShieldCheck, n: "03", t: "Curate (HITL)", d: "Exception routing for low-confidence extractions with full audit trail." },
+  { to: "/refinery/search", icon: Search, n: "04", t: "Retrieve", d: "Hybrid BM25 + dense vectors, re-ranking, cited bounding boxes." },
+  { to: "/refinery/agents", icon: Bot, n: "05", t: "Serve Agents", d: "MCP tools for LLMs and autonomous agents to consume the refinery." },
+  { to: "/refinery/delivery", icon: Send, n: "06", t: "Deliver", d: "Spreadsheet & data-toolkit exports, event webhooks to workflows." },
 ] as const;
 
 const kpis = [
@@ -78,7 +78,7 @@ function Overview() {
             {(["Refined", "Parsing", "In Review", "Queued"] as const).map((s) => (
               <li key={s} className="flex justify-between"><span className="text-muted-foreground">{s}</span><span className="font-mono">{docs.filter((d) => d.status === s).length}</span></li>
             ))}
-            <li className="flex justify-between border-t pt-2"><span className="text-muted-foreground">Open exceptions</span><Link to="/curation" className="font-mono text-primary">{exceptions.length}</Link></li>
+            <li className="flex justify-between border-t pt-2"><span className="text-muted-foreground">Open exceptions</span><Link to="/refinery/curation" className="font-mono text-primary">{exceptions.length}</Link></li>
           </ul>
         </Panel>
       </div>
