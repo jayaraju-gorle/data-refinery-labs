@@ -1,6 +1,6 @@
 import { chunks, type Chunk } from "./data";
 
-const tok = (s: string) => s.toLowerCase().match(/[a-z0-9.$%]+/g) ?? [];
+const tok = (s: string): string[] => s.toLowerCase().match(/[a-z0-9.$%]+/g) ?? [];
 
 // Lightweight BM25 over mock chunks + a deterministic pseudo "dense" score
 // from synonym-expanded overlap, then reciprocal-rank-fusion style re-ranking.

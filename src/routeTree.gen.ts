@@ -9,19 +9,14 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
 import { Route as AgentsRouteImport } from './routes/agents'
 import { Route as CurationRouteImport } from './routes/curation'
 import { Route as DeliveryRouteImport } from './routes/delivery'
+import { Route as EnterpriseRouteImport } from './routes/enterprise'
 import { Route as IngestionRouteImport } from './routes/ingestion'
 import { Route as RefineryRouteImport } from './routes/refinery'
 import { Route as SearchRouteImport } from './routes/search'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AgentsRoute = AgentsRouteImport.update({
   id: '/agents',
   path: '/agents',
@@ -35,6 +30,11 @@ const CurationRoute = CurationRouteImport.update({
 const DeliveryRoute = DeliveryRouteImport.update({
   id: '/delivery',
   path: '/delivery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnterpriseRoute = EnterpriseRouteImport.update({
+  id: '/enterprise',
+  path: '/enterprise',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IngestionRoute = IngestionRouteImport.update({
@@ -54,29 +54,29 @@ const SearchRoute = SearchRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
   '/agents': typeof AgentsRoute
   '/curation': typeof CurationRoute
   '/delivery': typeof DeliveryRoute
+  '/enterprise': typeof EnterpriseRoute
   '/ingestion': typeof IngestionRoute
   '/refinery': typeof RefineryRoute
   '/search': typeof SearchRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
   '/agents': typeof AgentsRoute
   '/curation': typeof CurationRoute
   '/delivery': typeof DeliveryRoute
+  '/enterprise': typeof EnterpriseRoute
   '/ingestion': typeof IngestionRoute
   '/refinery': typeof RefineryRoute
   '/search': typeof SearchRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
   '/agents': typeof AgentsRoute
   '/curation': typeof CurationRoute
   '/delivery': typeof DeliveryRoute
+  '/enterprise': typeof EnterpriseRoute
   '/ingestion': typeof IngestionRoute
   '/refinery': typeof RefineryRoute
   '/search': typeof SearchRoute
@@ -84,38 +84,38 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/'
     | '/agents'
     | '/curation'
     | '/delivery'
+    | '/enterprise'
     | '/ingestion'
     | '/refinery'
     | '/search'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/'
     | '/agents'
     | '/curation'
     | '/delivery'
+    | '/enterprise'
     | '/ingestion'
     | '/refinery'
     | '/search'
   id:
     | '__root__'
-    | '/'
     | '/agents'
     | '/curation'
     | '/delivery'
+    | '/enterprise'
     | '/ingestion'
     | '/refinery'
     | '/search'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
   AgentsRoute: typeof AgentsRoute
   CurationRoute: typeof CurationRoute
   DeliveryRoute: typeof DeliveryRoute
+  EnterpriseRoute: typeof EnterpriseRoute
   IngestionRoute: typeof IngestionRoute
   RefineryRoute: typeof RefineryRoute
   SearchRoute: typeof SearchRoute
@@ -123,13 +123,6 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/agents': {
       id: '/agents'
       path: '/agents'
@@ -149,6 +142,13 @@ declare module '@tanstack/react-router' {
       path: '/delivery'
       fullPath: '/delivery'
       preLoaderRoute: typeof DeliveryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/enterprise': {
+      id: '/enterprise'
+      path: '/enterprise'
+      fullPath: '/enterprise'
+      preLoaderRoute: typeof EnterpriseRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ingestion': {
@@ -176,10 +176,10 @@ declare module '@tanstack/react-router' {
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
   AgentsRoute: AgentsRoute,
   CurationRoute: CurationRoute,
   DeliveryRoute: DeliveryRoute,
+  EnterpriseRoute: EnterpriseRoute,
   IngestionRoute: IngestionRoute,
   RefineryRoute: RefineryRoute,
   SearchRoute: SearchRoute,
