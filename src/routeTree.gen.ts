@@ -9,17 +9,30 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as IndexRouteImport } from './routes/index'
 import { Route as AgentsRouteImport } from './routes/agents'
+import { Route as ApiToolRouteImport } from './routes/api-tool'
 import { Route as CurationRouteImport } from './routes/curation'
 import { Route as DeliveryRouteImport } from './routes/delivery'
+import { Route as DocsRouteImport } from './routes/docs'
 import { Route as EnterpriseRouteImport } from './routes/enterprise'
 import { Route as IngestionRouteImport } from './routes/ingestion'
 import { Route as RefineryRouteImport } from './routes/refinery'
 import { Route as SearchRouteImport } from './routes/search'
 
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AgentsRoute = AgentsRouteImport.update({
   id: '/agents',
   path: '/agents',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiToolRoute = ApiToolRouteImport.update({
+  id: '/api-tool',
+  path: '/api-tool',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CurationRoute = CurationRouteImport.update({
@@ -30,6 +43,11 @@ const CurationRoute = CurationRouteImport.update({
 const DeliveryRoute = DeliveryRouteImport.update({
   id: '/delivery',
   path: '/delivery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DocsRoute = DocsRouteImport.update({
+  id: '/docs',
+  path: '/docs',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EnterpriseRoute = EnterpriseRouteImport.update({
@@ -54,18 +72,24 @@ const SearchRoute = SearchRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
+  '/': typeof IndexRoute
   '/agents': typeof AgentsRoute
+  '/api-tool': typeof ApiToolRoute
   '/curation': typeof CurationRoute
   '/delivery': typeof DeliveryRoute
+  '/docs': typeof DocsRoute
   '/enterprise': typeof EnterpriseRoute
   '/ingestion': typeof IngestionRoute
   '/refinery': typeof RefineryRoute
   '/search': typeof SearchRoute
 }
 export interface FileRoutesByTo {
+  '/': typeof IndexRoute
   '/agents': typeof AgentsRoute
+  '/api-tool': typeof ApiToolRoute
   '/curation': typeof CurationRoute
   '/delivery': typeof DeliveryRoute
+  '/docs': typeof DocsRoute
   '/enterprise': typeof EnterpriseRoute
   '/ingestion': typeof IngestionRoute
   '/refinery': typeof RefineryRoute
@@ -73,9 +97,12 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
   '/agents': typeof AgentsRoute
+  '/api-tool': typeof ApiToolRoute
   '/curation': typeof CurationRoute
   '/delivery': typeof DeliveryRoute
+  '/docs': typeof DocsRoute
   '/enterprise': typeof EnterpriseRoute
   '/ingestion': typeof IngestionRoute
   '/refinery': typeof RefineryRoute
@@ -84,27 +111,36 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
+    | '/'
     | '/agents'
+    | '/api-tool'
     | '/curation'
     | '/delivery'
+    | '/docs'
     | '/enterprise'
     | '/ingestion'
     | '/refinery'
     | '/search'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/'
     | '/agents'
+    | '/api-tool'
     | '/curation'
     | '/delivery'
+    | '/docs'
     | '/enterprise'
     | '/ingestion'
     | '/refinery'
     | '/search'
   id:
     | '__root__'
+    | '/'
     | '/agents'
+    | '/api-tool'
     | '/curation'
     | '/delivery'
+    | '/docs'
     | '/enterprise'
     | '/ingestion'
     | '/refinery'
@@ -112,9 +148,12 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
   AgentsRoute: typeof AgentsRoute
+  ApiToolRoute: typeof ApiToolRoute
   CurationRoute: typeof CurationRoute
   DeliveryRoute: typeof DeliveryRoute
+  DocsRoute: typeof DocsRoute
   EnterpriseRoute: typeof EnterpriseRoute
   IngestionRoute: typeof IngestionRoute
   RefineryRoute: typeof RefineryRoute
@@ -123,11 +162,25 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/agents': {
       id: '/agents'
       path: '/agents'
       fullPath: '/agents'
       preLoaderRoute: typeof AgentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api-tool': {
+      id: '/api-tool'
+      path: '/api-tool'
+      fullPath: '/api-tool'
+      preLoaderRoute: typeof ApiToolRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/curation': {
@@ -142,6 +195,13 @@ declare module '@tanstack/react-router' {
       path: '/delivery'
       fullPath: '/delivery'
       preLoaderRoute: typeof DeliveryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/docs': {
+      id: '/docs'
+      path: '/docs'
+      fullPath: '/docs'
+      preLoaderRoute: typeof DocsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/enterprise': {
@@ -176,9 +236,12 @@ declare module '@tanstack/react-router' {
 }
 
 const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
   AgentsRoute: AgentsRoute,
+  ApiToolRoute: ApiToolRoute,
   CurationRoute: CurationRoute,
   DeliveryRoute: DeliveryRoute,
+  DocsRoute: DocsRoute,
   EnterpriseRoute: EnterpriseRoute,
   IngestionRoute: IngestionRoute,
   RefineryRoute: RefineryRoute,
