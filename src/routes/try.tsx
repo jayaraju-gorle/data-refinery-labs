@@ -167,7 +167,7 @@ function ApiTool() {
               <ToolBtn icon={Save} label="Save Request" onClick={saveReq} tone="border-primary text-primary" />
               <ToolBtn icon={FolderOpen} label="Load Saved" onClick={() => setPanel(panel === "load" ? null : "load")} tone="border-primary text-primary" active={panel === "load"} />
               <ToolBtn icon={Settings2} label="Advanced Builder" onClick={() => setPanel(panel === "advanced" ? null : "advanced")} active={panel === "advanced"} />
-              <ToolBtn icon={Clock} label="Schedule Calls" onClick={() => setPanel(panel === "schedule" ? null : "schedule")} tone="border-info text-info" active={panel === "schedule"} />
+              <ToolBtn icon={Clock} label="Schedule Calls" onClick={() => setPanel(panel === "schedule" ? null : "schedule")} tone="border-primary text-primary" active={panel === "schedule"} />
               <ToolBtn icon={Layers} label="Batch Testing" onClick={() => setPanel(panel === "batch" ? null : "batch")} tone="border-warning text-warning" active={panel === "batch"} />
             </div>
 
