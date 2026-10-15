@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { Send, FileInput, FileOutput, Save, FolderOpen, Settings2, Clock, Layers, Download, Table2, Copy, Trash2, Plus } from "lucide-react";
 
 export const Route = createFileRoute("/try")({
-  validateSearch: (s: Record<string, unknown>) => ({ url: typeof s.url === "string" ? s.url : undefined }),
+  validateSearch: (s: Record<string, unknown>): { url?: string } => ({ url: typeof s.url === "string" ? s.url : undefined }),
   head: () => ({
     meta: [
       { title: "Try Our Tools — API Tool | Data Toolkit for Sheets" },
@@ -95,9 +95,9 @@ function ApiTool() {
     const text = await r.text();
     return { status: r.status, statusText: r.statusText, ms: Math.round(performance.now() - t), text, headers: [...r.headers.entries()] };
   };
-  const send = async () => {
+  const send = async (): Promise<Resp | undefined> => {
     setLoading(true); setErr("");
-    try { const r = await call(); setResp(r); return r; } catch (e) { setResp(null); setErr((e as Error).message); } finally { setLoading(false); }
+    try { const r = await call(); setResp(r); return r; } catch (e) { setResp(null); setErr((e as Error).message); return undefined; } finally { setLoading(false); }
   };
 
   const toggleSchedule = () => {
