@@ -1,18 +1,16 @@
 import { Link } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
-import { Home, Send, Trophy, Search, Newspaper, Layers, Menu, X, Youtube, Instagram } from "lucide-react";
+import { Home, Send, Trophy, Newspaper, Layers, Menu, X, Youtube, Instagram } from "lucide-react";
 
 const nav = [
   { to: "/", label: "Home", icon: Home },
   { to: "/try", label: "Data Tools", icon: Send },
   { to: "/cricket-data", label: "Cricket Data", icon: Trophy },
-  { to: "/linkedin-search", label: "Linkedin Data", icon: Search },
   { to: "/blog", label: "Blog", icon: Newspaper },
   { to: "/refinery", label: "Data Refinery", icon: Layers, isNew: true },
 ] as const;
 
 const SITE = "https://www.datatoolkitforsheets.com";
-export const MARKETPLACE = "https://workspace.google.com/marketplace/search/data%20toolkit%20for%20sheets";
 
 export function AppShell({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
@@ -65,7 +63,6 @@ export function AppShell({ children }: { children: ReactNode }) {
             <a href={`${SITE}/privacy.html`} className="hover:text-brand-foreground">Privacy Policy</a>
             <a href={`${SITE}/terms.html`} className="hover:text-brand-foreground">Terms of Service</a>
             <a href={`${SITE}/support.html`} className="hover:text-brand-foreground">Support</a>
-            <a href={MARKETPLACE} target="_blank" rel="noreferrer" className="hover:text-brand-foreground">Install from Google Workspace Marketplace</a>
           </div>
           <div className="text-xs opacity-70">© {new Date().getFullYear()} Data Toolkit for Sheets. All rights reserved.</div>
         </div>

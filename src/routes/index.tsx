@@ -1,16 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Send, Trophy, Search, Layers } from "lucide-react";
+import { Send, Trophy, Layers } from "lucide-react";
 import { posts } from "@/lib/blog";
 import { PostCard } from "@/components/PostCard";
-import { MARKETPLACE } from "@/components/AppShell";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Data Toolkit for Sheets - Advanced Data Tools for Spreadsheets" },
-      { name: "description", content: "Your all-in-one data & cricket hub: API tool, LinkedIn data, cricket stats and the new Enterprise Data Refinery for Google Sheets." },
+      { name: "description", content: "Your all-in-one data & cricket hub: API tool, cricket stats and the new Enterprise Data Refinery for Google Sheets." },
       { property: "og:title", content: "Data Toolkit for Sheets - Your All-in-One Data & Cricket Hub" },
-      { property: "og:description", content: "API tool, LinkedIn data, cricket stats and an Enterprise Data Refinery for Google Sheets." },
+      { property: "og:description", content: "API tool, cricket stats and an Enterprise Data Refinery for Google Sheets." },
     ],
   }),
   component: Home,
@@ -18,7 +17,6 @@ export const Route = createFileRoute("/")({
 
 const solutions = [
   { icon: Send, t: "API Integration Tool", d: "Instantly test, connect, and explore APIs. Paste a cURL, see results, and export data effortlessly.", to: "/try" },
-  { icon: Search, t: "LinkedIn Data", d: "Extract and analyze LinkedIn profile data for lead generation, recruitment, and business intelligence.", to: "/linkedin-search" },
   { icon: Trophy, t: "Cricket Data Central", d: "Get live scores, schedules, and in-depth stats for all major cricket series and tournaments.", to: "/cricket-data" },
   { icon: Layers, t: "Enterprise Data Refinery", d: "Turn 10-K filings, earnings transcripts and statements into validated, machine-ready tables for Sheets and AI agents.", to: "/refinery", isNew: true },
 ] as const;
@@ -36,7 +34,7 @@ function Home() {
       </section>
 
       <h2 className="mb-5 mt-12 text-center text-2xl font-semibold">Data Solutions</h2>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {solutions.map((s) => (
           <Link key={s.t} to={s.to} className="relative rounded-lg border bg-card p-6 text-center shadow-sm transition-shadow hover:shadow-md">
             {"isNew" in s && <span className="absolute right-3 top-3 rounded bg-primary px-1.5 text-[10px] font-bold uppercase text-primary-foreground">New</span>}
@@ -60,7 +58,6 @@ function Home() {
         <p className="mt-2 text-muted-foreground">Explore our tools and see how they can help you work with data more effectively.</p>
         <div className="mt-5 flex flex-wrap justify-center gap-3">
           <Link to="/try" className="rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-primary/90">Explore Our Free Tools</Link>
-          <a href={MARKETPLACE} target="_blank" rel="noreferrer" className="rounded-md border px-5 py-2.5 text-sm font-semibold hover:bg-muted">Get the Google Sheets Add-on</a>
         </div>
       </section>
     </>
