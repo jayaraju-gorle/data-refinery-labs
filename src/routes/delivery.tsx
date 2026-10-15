@@ -36,7 +36,7 @@ function Delivery() {
   const json = () => download("HLCB_income_statement_Q3_2026.json", JSON.stringify({ document_id: "DOC-10Q-3307", unit: "USD millions", rows: rows.map((r) => ({ line_item: r.l, q3_2026: r.a, q3_2025: r.b, yoy_pct: +r.yoy.toFixed(1) })) }, null, 2), "application/json");
   const fire = (kind?: string) => setHooks([{ t: new Date().toTimeString().slice(0, 8), ev: kind ?? ev, url: kind ? "Sheets: Halcyon_Q3!A1 (via add-on)" : url, code: Math.random() > 0.15 ? 200 : 503, ms: 60 + Math.round(Math.random() * 200) }, ...hooks]);
 
-  const payload = { event: ev, id: "evt_01J…", occurred_at: new Date().toISOString().slice(0, 19) + "Z", data: { document_id: "DOC-10Q-3307", ticker: "HLCB", contract: "document/v2", changed_fields: ["income_statement.rd_expense.q3_2026"] }, signature: "sha256=…" };
+  const payload = { event: ev, id: "evt_01J…", occurred_at: "2026-10-15T08:00:00Z", data: { document_id: "DOC-10Q-3307", ticker: "HLCB", contract: "document/v2", changed_fields: ["income_statement.rd_expense.q3_2026"] }, signature: "sha256=…" };
 
   return (
     <>
