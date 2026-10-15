@@ -4,7 +4,7 @@ import { Download, Zap, FileSpreadsheet, FileJson, Database } from "lucide-react
 import { PageHeader, Panel, Pill } from "@/components/AppShell";
 import { incomeTable } from "@/lib/data";
 
-export const Route = createFileRoute("/delivery")({
+export const Route = createFileRoute("/refinery/delivery")({
   head: () => ({
     meta: [
       { title: "Workflow Delivery — Data Toolkit for Sheets" },

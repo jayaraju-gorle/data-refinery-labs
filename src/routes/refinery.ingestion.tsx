@@ -4,7 +4,7 @@ import { FileText, FileAudio, FileSpreadsheet, FileCode, Globe, Upload, GitBranc
 import { PageHeader, Panel, Pill, Conf } from "@/components/AppShell";
 import { docs as seed, type Doc } from "@/lib/data";
 
-export const Route = createFileRoute("/ingestion")({
+export const Route = createFileRoute("/refinery/ingestion")({
   head: () => ({
     meta: [
       { title: "Sourcing & Ingestion — Data Toolkit for Sheets" },

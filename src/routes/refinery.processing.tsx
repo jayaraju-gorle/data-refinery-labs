@@ -4,7 +4,7 @@ import { CheckCircle2 } from "lucide-react";
 import { PageHeader, Panel, Pill } from "@/components/AppShell";
 import { chunks, sampleContract } from "@/lib/data";
 
-export const Route = createFileRoute("/refinery")({
+export const Route = createFileRoute("/refinery/processing")({
   head: () => ({
     meta: [
       { title: "Refinery Engine — Data Toolkit for Sheets" },

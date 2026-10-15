@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Play, Send, Plus, Trash2 } from "lucide-react";
 import { PageHeader, Panel, Pill } from "@/components/AppShell";
 
-export const Route = createFileRoute("/api-tool")({
+export const Route = createFileRoute("/try")({
   head: () => ({
     meta: [
       { title: "API Tool — Data Toolkit for Sheets" },

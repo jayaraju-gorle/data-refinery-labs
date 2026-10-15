@@ -3,7 +3,7 @@ import { ArrowRight, Inbox, Layers, ShieldCheck, Search, Bot, Send } from "lucid
 import { PageHeader, Panel } from "@/components/AppShell";
 import { docs, exceptions } from "@/lib/data";
 
-export const Route = createFileRoute("/enterprise")({
+export const Route = createFileRoute("/refinery/")({
   head: () => ({
     meta: [
       { title: "Enterprise Document Refinery — Data Toolkit for Sheets" },
