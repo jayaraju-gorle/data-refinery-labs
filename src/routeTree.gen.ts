@@ -10,33 +10,154 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AgentsRouteImport } from './routes/agents'
+import { Route as ApiToolRouteImport } from './routes/api-tool'
+import { Route as CurationRouteImport } from './routes/curation'
+import { Route as DeliveryRouteImport } from './routes/delivery'
+import { Route as DocsRouteImport } from './routes/docs'
+import { Route as EnterpriseRouteImport } from './routes/enterprise'
+import { Route as IngestionRouteImport } from './routes/ingestion'
+import { Route as RefineryRouteImport } from './routes/refinery'
+import { Route as SearchRouteImport } from './routes/search'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AgentsRoute = AgentsRouteImport.update({
+  id: '/agents',
+  path: '/agents',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiToolRoute = ApiToolRouteImport.update({
+  id: '/api-tool',
+  path: '/api-tool',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CurationRoute = CurationRouteImport.update({
+  id: '/curation',
+  path: '/curation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeliveryRoute = DeliveryRouteImport.update({
+  id: '/delivery',
+  path: '/delivery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DocsRoute = DocsRouteImport.update({
+  id: '/docs',
+  path: '/docs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnterpriseRoute = EnterpriseRouteImport.update({
+  id: '/enterprise',
+  path: '/enterprise',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IngestionRoute = IngestionRouteImport.update({
+  id: '/ingestion',
+  path: '/ingestion',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RefineryRoute = RefineryRouteImport.update({
+  id: '/refinery',
+  path: '/refinery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/agents': typeof AgentsRoute
+  '/api-tool': typeof ApiToolRoute
+  '/curation': typeof CurationRoute
+  '/delivery': typeof DeliveryRoute
+  '/docs': typeof DocsRoute
+  '/enterprise': typeof EnterpriseRoute
+  '/ingestion': typeof IngestionRoute
+  '/refinery': typeof RefineryRoute
+  '/search': typeof SearchRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/agents': typeof AgentsRoute
+  '/api-tool': typeof ApiToolRoute
+  '/curation': typeof CurationRoute
+  '/delivery': typeof DeliveryRoute
+  '/docs': typeof DocsRoute
+  '/enterprise': typeof EnterpriseRoute
+  '/ingestion': typeof IngestionRoute
+  '/refinery': typeof RefineryRoute
+  '/search': typeof SearchRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/agents': typeof AgentsRoute
+  '/api-tool': typeof ApiToolRoute
+  '/curation': typeof CurationRoute
+  '/delivery': typeof DeliveryRoute
+  '/docs': typeof DocsRoute
+  '/enterprise': typeof EnterpriseRoute
+  '/ingestion': typeof IngestionRoute
+  '/refinery': typeof RefineryRoute
+  '/search': typeof SearchRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/agents'
+    | '/api-tool'
+    | '/curation'
+    | '/delivery'
+    | '/docs'
+    | '/enterprise'
+    | '/ingestion'
+    | '/refinery'
+    | '/search'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/agents'
+    | '/api-tool'
+    | '/curation'
+    | '/delivery'
+    | '/docs'
+    | '/enterprise'
+    | '/ingestion'
+    | '/refinery'
+    | '/search'
+  id:
+    | '__root__'
+    | '/'
+    | '/agents'
+    | '/api-tool'
+    | '/curation'
+    | '/delivery'
+    | '/docs'
+    | '/enterprise'
+    | '/ingestion'
+    | '/refinery'
+    | '/search'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AgentsRoute: typeof AgentsRoute
+  ApiToolRoute: typeof ApiToolRoute
+  CurationRoute: typeof CurationRoute
+  DeliveryRoute: typeof DeliveryRoute
+  DocsRoute: typeof DocsRoute
+  EnterpriseRoute: typeof EnterpriseRoute
+  IngestionRoute: typeof IngestionRoute
+  RefineryRoute: typeof RefineryRoute
+  SearchRoute: typeof SearchRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +169,83 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/agents': {
+      id: '/agents'
+      path: '/agents'
+      fullPath: '/agents'
+      preLoaderRoute: typeof AgentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api-tool': {
+      id: '/api-tool'
+      path: '/api-tool'
+      fullPath: '/api-tool'
+      preLoaderRoute: typeof ApiToolRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/curation': {
+      id: '/curation'
+      path: '/curation'
+      fullPath: '/curation'
+      preLoaderRoute: typeof CurationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/delivery': {
+      id: '/delivery'
+      path: '/delivery'
+      fullPath: '/delivery'
+      preLoaderRoute: typeof DeliveryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/docs': {
+      id: '/docs'
+      path: '/docs'
+      fullPath: '/docs'
+      preLoaderRoute: typeof DocsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/enterprise': {
+      id: '/enterprise'
+      path: '/enterprise'
+      fullPath: '/enterprise'
+      preLoaderRoute: typeof EnterpriseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ingestion': {
+      id: '/ingestion'
+      path: '/ingestion'
+      fullPath: '/ingestion'
+      preLoaderRoute: typeof IngestionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/refinery': {
+      id: '/refinery'
+      path: '/refinery'
+      fullPath: '/refinery'
+      preLoaderRoute: typeof RefineryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AgentsRoute: AgentsRoute,
+  ApiToolRoute: ApiToolRoute,
+  CurationRoute: CurationRoute,
+  DeliveryRoute: DeliveryRoute,
+  DocsRoute: DocsRoute,
+  EnterpriseRoute: EnterpriseRoute,
+  IngestionRoute: IngestionRoute,
+  RefineryRoute: RefineryRoute,
+  SearchRoute: SearchRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
