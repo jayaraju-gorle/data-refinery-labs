@@ -7,9 +7,9 @@ import { incomeTable } from "@/lib/data";
 export const Route = createFileRoute("/delivery")({
   head: () => ({
     meta: [
-      { title: "Workflow Delivery — Insight Refinery" },
+      { title: "Workflow Delivery — Data Toolkit for Sheets" },
       { name: "description", content: "Export clean tabular data to spreadsheet and data-toolkit formats and trigger event webhooks." },
-      { property: "og:title", content: "Workflow Delivery — Insight Refinery" },
+      { property: "og:title", content: "Workflow Delivery — Data Toolkit for Sheets" },
       { property: "og:description", content: "Spreadsheet exports and downstream event webhooks." },
     ],
   }),

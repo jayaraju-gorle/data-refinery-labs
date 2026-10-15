@@ -7,9 +7,9 @@ import { chunks, sampleContract } from "@/lib/data";
 export const Route = createFileRoute("/refinery")({
   head: () => ({
     meta: [
-      { title: "Refinery Engine — Insight Refinery" },
+      { title: "Refinery Engine — Data Toolkit for Sheets" },
       { name: "description", content: "Layout-aware parsing, intelligent chunking and machine-ready JSON contracts." },
-      { property: "og:title", content: "Refinery Engine — Insight Refinery" },
+      { property: "og:title", content: "Refinery Engine — Data Toolkit for Sheets" },
       { property: "og:description", content: "Visual layout extraction, semantic and lexical chunking, validated JSON output." },
     ],
   }),

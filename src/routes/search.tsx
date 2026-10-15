@@ -8,9 +8,9 @@ import { docById } from "@/lib/data";
 export const Route = createFileRoute("/search")({
   head: () => ({
     meta: [
-      { title: "Hybrid Search — Insight Refinery" },
+      { title: "Hybrid Search — Data Toolkit for Sheets" },
       { name: "description", content: "BM25 lexical plus dense vector search with re-ranking and bounding-box citations." },
-      { property: "og:title", content: "Hybrid Search — Insight Refinery" },
+      { property: "og:title", content: "Hybrid Search — Data Toolkit for Sheets" },
       { property: "og:description", content: "Hybrid retrieval with re-ranking scores and source traceability." },
     ],
   }),

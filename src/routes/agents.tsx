@@ -8,9 +8,9 @@ import { hybridSearch } from "@/lib/search";
 export const Route = createFileRoute("/agents")({
   head: () => ({
     meta: [
-      { title: "MCP & Agent Endpoints — Insight Refinery" },
+      { title: "MCP & Agent Endpoints — Data Toolkit for Sheets" },
       { name: "description", content: "Agentic tools exposed over Model Context Protocol for LLMs and autonomous agents." },
-      { property: "og:title", content: "MCP & Agent Endpoints — Insight Refinery" },
+      { property: "og:title", content: "MCP & Agent Endpoints — Data Toolkit for Sheets" },
       { property: "og:description", content: "How downstream LLMs and agents consume the refinery via MCP tools." },
     ],
   }),

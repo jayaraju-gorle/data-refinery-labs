@@ -3,12 +3,12 @@ import { ArrowRight, Inbox, Layers, ShieldCheck, Search, Bot, Send } from "lucid
 import { PageHeader, Panel } from "@/components/AppShell";
 import { docs, exceptions } from "@/lib/data";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/enterprise")({
   head: () => ({
     meta: [
-      { title: "Overview — Insight Refinery" },
+      { title: "Enterprise Document Refinery — Data Toolkit for Sheets" },
       { name: "description", content: "End-to-end document lifecycle: sourcing, refinement, curation and AI-ready delivery." },
-      { property: "og:title", content: "Overview — Insight Refinery" },
+      { property: "og:title", content: "Enterprise Document Refinery — Data Toolkit for Sheets" },
       { property: "og:description", content: "End-to-end document lifecycle from ingestion to agentic consumption." },
     ],
   }),
@@ -38,7 +38,7 @@ function Overview() {
   const max = Math.max(...flow);
   return (
     <>
-      <PageHeader eyebrow="Platform overview" title="Document Refinery — end-to-end lifecycle" desc="Unstructured financial content becomes governed, machine-ready intelligence: sourced with lineage, refined with layout awareness, curated by stewards, and delivered to search, agents and workflows." />
+      <PageHeader eyebrow="Enterprise module · flagship" title="Document Refinery — end-to-end lifecycle" desc="Unstructured financial content becomes governed, machine-ready intelligence: sourced with lineage, refined with layout awareness, curated by stewards, and delivered to search, agents and workflows." />
       <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6">
         {kpis.map(([l, v, d]) => (
           <div key={l} className="rounded-lg border bg-card p-3">
