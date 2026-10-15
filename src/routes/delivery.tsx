@@ -34,7 +34,7 @@ function Delivery() {
 
   const csv = () => download("HLCB_income_statement_Q3_2026.csv", [incomeTable.headers.join(","), ...rows.map((r) => [`"${r.l}"`, r.a, r.b, r.yoy.toFixed(1)].join(","))].join("\n"), "text/csv");
   const json = () => download("HLCB_income_statement_Q3_2026.json", JSON.stringify({ document_id: "DOC-10Q-3307", unit: "USD millions", rows: rows.map((r) => ({ line_item: r.l, q3_2026: r.a, q3_2025: r.b, yoy_pct: +r.yoy.toFixed(1) })) }, null, 2), "application/json");
-  const fire = () => setHooks([{ t: new Date().toTimeString().slice(0, 8), ev, url, code: Math.random() > 0.15 ? 200 : 503, ms: 60 + Math.round(Math.random() * 200) }, ...hooks]);
+  const fire = (kind?: string) => setHooks([{ t: new Date().toTimeString().slice(0, 8), ev: kind ?? ev, url: kind ? "Sheets: Halcyon_Q3!A1 (via add-on)" : url, code: Math.random() > 0.15 ? 200 : 503, ms: 60 + Math.round(Math.random() * 200) }, ...hooks]);
 
   const payload = { event: ev, id: "evt_01J…", occurred_at: new Date().toISOString().slice(0, 19) + "Z", data: { document_id: "DOC-10Q-3307", ticker: "HLCB", contract: "document/v2", changed_fields: ["income_statement.rd_expense.q3_2026"] }, signature: "sha256=…" };
 
@@ -50,14 +50,15 @@ function Delivery() {
             ))}</tbody>
           </table>
           <div className="mt-4 flex flex-wrap gap-2">
-            <button onClick={csv} className="inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"><FileSpreadsheet className="h-4 w-4" />Export CSV (spreadsheet)</button>
+            <button onClick={() => fire("sheets.export")} className="inline-flex items-center gap-1.5 rounded-md bg-success px-3 py-2 text-sm font-medium text-primary-foreground hover:opacity-90"><FileSpreadsheet className="h-4 w-4" />Send to Google Sheets</button>
+            <button onClick={csv} className="inline-flex items-center gap-1.5 rounded-md border px-3 py-2 text-sm hover:bg-muted"><FileSpreadsheet className="h-4 w-4" />Export CSV</button>
             <button onClick={json} className="inline-flex items-center gap-1.5 rounded-md border px-3 py-2 text-sm hover:bg-muted"><FileJson className="h-4 w-4" />Export JSON</button>
             <button onClick={() => download("hlcb_q3_2026.py", "import pandas as pd\n\ndf = pd.read_json('https://refinery.example/v2/tables/DOC-10Q-3307/tbl_statements_of_operations')\nprint(df)\n", "text/x-python")} className="inline-flex items-center gap-1.5 rounded-md border px-3 py-2 text-sm hover:bg-muted"><Database className="h-4 w-4" />Data-toolkit snippet</button>
           </div>
         </Panel>
         <Panel title="Delivery targets" className="lg:col-span-2">
           <ul className="space-y-2 text-sm">
-            {[["Spreadsheet add-in", "Live formulas · refresh on metric.changed", "success"], ["Lakehouse table (Iceberg)", "Hourly append · partitioned by as_of", "success"], ["Python / notebook SDK", "Typed DataFrames", "success"], ["Event bus (Kafka topic)", "refinery.documents.v2", "primary"], ["Quant model feature store", "Pending onboarding", "muted"]].map(([a, b, t]) => (
+            {[["Google Sheets (Data Toolkit add-on)", "Live ranges · refresh on metric.changed", "success"], ["Lakehouse table (Iceberg)", "Hourly append · partitioned by as_of", "success"], ["Python / notebook SDK", "Typed DataFrames", "success"], ["Event bus (Kafka topic)", "refinery.documents.v2", "primary"], ["Quant model feature store", "Pending onboarding", "muted"]].map(([a, b, t]) => (
               <li key={a} className="flex items-center justify-between rounded border px-3 py-2"><div><div className="font-medium">{a}</div><div className="text-xs text-muted-foreground">{b}</div></div><Pill tone={t as "success"}>{t === "muted" ? "planned" : "live"}</Pill></li>
             ))}
           </ul>
@@ -71,7 +72,7 @@ function Delivery() {
           <label className="mt-3 block text-xs text-muted-foreground">Endpoint URL</label>
           <input value={url} onChange={(e) => setUrl(e.target.value)} className="mt-1 w-full rounded border bg-background px-2 py-1.5 font-mono text-xs" />
           <pre className="mt-3 overflow-x-auto rounded bg-muted/60 p-3 font-mono text-[11px]">{JSON.stringify(payload, null, 2)}</pre>
-          <button onClick={fire} className="mt-3 inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"><Zap className="h-4 w-4" />Send test event</button>
+          <button onClick={() => fire()} className="mt-3 inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"><Zap className="h-4 w-4" />Send test event</button>
         </Panel>
         <Panel title="Delivery log" className="lg:col-span-3">
           {hooks.length === 0 ? <div className="py-10 text-center text-sm text-muted-foreground">No deliveries yet — send a test event. (Simulated; no network call is made.)</div> : (

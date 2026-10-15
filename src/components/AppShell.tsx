@@ -1,17 +1,20 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import {
-  LayoutDashboard, Inbox, Layers, ShieldCheck, Search, Bot, Send, Hexagon,
+  LayoutDashboard, Inbox, Layers, ShieldCheck, Search, Bot, Send, Sheet, Plug, Building2, LifeBuoy,
 } from "lucide-react";
 
 const nav = [
-  { to: "/", label: "Overview", icon: LayoutDashboard, group: "Platform" },
-  { to: "/ingestion", label: "Sourcing & Ingestion", icon: Inbox, group: "1 · Source" },
-  { to: "/refinery", label: "Refinery Engine", icon: Layers, group: "2 · Refine" },
-  { to: "/curation", label: "Curation Workbench", icon: ShieldCheck, group: "2 · Refine" },
-  { to: "/search", label: "Hybrid Search", icon: Search, group: "3 · Deliver" },
-  { to: "/agents", label: "MCP & Agent Endpoints", icon: Bot, group: "3 · Deliver" },
-  { to: "/delivery", label: "Workflow Delivery", icon: Send, group: "3 · Deliver" },
+  { to: "/", label: "Overview", icon: LayoutDashboard, group: "Data Toolkit" },
+  { to: "/api-tool", label: "API Tool", icon: Plug, group: "Data Toolkit" },
+  { to: "/enterprise", label: "Refinery Overview", icon: Building2, group: "Enterprise Document Refinery" },
+  { to: "/ingestion", label: "1 · Sourcing & Ingestion", icon: Inbox, group: "Enterprise Document Refinery" },
+  { to: "/refinery", label: "2 · Processing & JSON", icon: Layers, group: "Enterprise Document Refinery" },
+  { to: "/curation", label: "3 · HITL Review", icon: ShieldCheck, group: "Enterprise Document Refinery" },
+  { to: "/search", label: "4 · Hybrid Search", icon: Search, group: "Enterprise Document Refinery" },
+  { to: "/agents", label: "5 · MCP & Agents", icon: Bot, group: "Enterprise Document Refinery" },
+  { to: "/delivery", label: "6 · Export to Sheets", icon: Send, group: "Enterprise Document Refinery" },
+  { to: "/docs", label: "Documentation & Support", icon: LifeBuoy, group: "Help" },
 ] as const;
 
 export function AppShell({ children }: { children: ReactNode }) {
@@ -21,10 +24,10 @@ export function AppShell({ children }: { children: ReactNode }) {
     <div className="flex min-h-screen bg-background font-sans text-foreground">
       <aside className="sticky top-0 hidden h-screen w-64 shrink-0 flex-col bg-sidebar text-sidebar-foreground md:flex">
         <div className="flex items-center gap-2 border-b border-sidebar-border px-5 py-4">
-          <Hexagon className="h-6 w-6 text-sidebar-primary" />
+          <Sheet className="h-6 w-6 text-sidebar-primary" />
           <div>
-            <div className="text-sm font-semibold text-sidebar-accent-foreground">Insight Refinery</div>
-            <div className="text-[11px] uppercase tracking-wider opacity-60">Document Intelligence</div>
+            <div className="text-sm font-semibold text-sidebar-accent-foreground">Data Toolkit for Sheets</div>
+            <div className="text-[11px] uppercase tracking-wider opacity-60">APIs · Documents · Sheets</div>
           </div>
         </div>
         <nav className="flex-1 overflow-y-auto px-3 py-4">
@@ -46,7 +49,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             );
           })}
         </nav>
-        <div className="border-t border-sidebar-border px-5 py-3 text-[11px] opacity-60">Prototype · mock data · v0.4</div>
+        <div className="border-t border-sidebar-border px-5 py-3 text-[11px] opacity-60">Enterprise preview · demo data</div>
       </aside>
       <div className="min-w-0 flex-1">
         <div className="flex gap-1 overflow-x-auto border-b bg-card px-3 py-2 md:hidden">
