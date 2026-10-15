@@ -136,7 +136,7 @@ function ApiTool() {
         <h1 className="text-3xl font-semibold">Try Our Tools</h1>
         <p className="text-muted-foreground">Explore our advanced data tools</p>
       </div>
-      <div className="grid gap-4 lg:grid-cols-[230px_1fr_1fr]">
+      <div className="grid gap-4 lg:grid-cols-[230px_minmax(0,1fr)_minmax(0,1fr)]">
         <aside className="rounded-lg border bg-card">
           <h2 className="border-b px-4 py-3 font-semibold">Popular Public APIs</h2>
           <div className="max-h-[720px] space-y-3 overflow-auto p-3">
