@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-// Intentionally fictional public demonstration data; no licensed FactSet data.
+// Intentionally fictional demonstration data.
 export const DEFAULT_AS_OF = "2026-10-16T12:00";
 export const REVIEW_THRESHOLD = 0.85;
 export const factKeys = ["revenue", "cost_of_revenue", "operating_income", "free_cash_flow"] as const;
