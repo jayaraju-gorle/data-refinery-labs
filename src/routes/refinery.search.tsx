@@ -8,6 +8,8 @@ import { docById } from "@/lib/data";
 export const Route = createFileRoute("/refinery/search")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { title: "Hybrid Search — Data Toolkit for Sheets" },
       { name: "description", content: "BM25 lexical plus dense vector search with re-ranking and bounding-box citations." },
       { property: "og:title", content: "Hybrid Search — Data Toolkit for Sheets" },

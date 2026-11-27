@@ -6,6 +6,8 @@ import { docs, exceptions } from "@/lib/data";
 export const Route = createFileRoute("/refinery/")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { title: "Enterprise Document Refinery — Data Toolkit for Sheets" },
       { name: "description", content: "End-to-end document lifecycle: sourcing, refinement, curation and AI-ready delivery." },
       { property: "og:title", content: "Enterprise Document Refinery — Data Toolkit for Sheets" },
@@ -39,6 +41,13 @@ function Overview() {
   return (
     <>
       <PageHeader eyebrow="Enterprise module · flagship" title="Document Refinery — end-to-end lifecycle" desc="Unstructured financial content becomes governed, machine-ready intelligence: sourced with lineage, refined with layout awareness, curated by stewards, and delivered to search, agents and workflows." />
+      <div className="mb-6 grid gap-3 md:grid-cols-3">
+        {([
+          { to: "/refinery/processing", title: "Auditable financial facts", detail: "Original vs. amended filings · UTC cutoffs · cited source cells", icon: ShieldCheck },
+          { to: "/refinery/agents", title: "Financial agent playground", detail: "Validated JSON-RPC · version comparison · cited facts", icon: Bot },
+          { to: "/refinery/delivery", title: "Research model workbook", detail: "Excel formulas · approved inputs · source provenance", icon: Send },
+        ] as const).map((item) => <Link key={item.to} to={item.to} className="group rounded-md border border-primary/30 bg-card p-4 hover:bg-accent/30"><item.icon className="h-5 w-5 text-primary" /><h2 className="mt-3 font-semibold">{item.title}</h2><p className="mt-2 text-xs text-muted-foreground">{item.detail}</p><ArrowRight className="mt-3 h-4 w-4 text-primary" /></Link>)}
+      </div>
       <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6">
         {kpis.map(([l, v, d]) => (
           <div key={l} className="rounded-lg border bg-card p-3">
@@ -49,7 +58,7 @@ function Overview() {
         ))}
       </div>
 
-      <h2 className="mb-3 mt-8 text-sm font-semibold uppercase tracking-wider text-muted-foreground">Data lifecycle — click any stage to walk through</h2>
+      <h2 className="mb-3 mt-8 text-sm font-semibold uppercase tracking-wider text-muted-foreground">Data lifecycle</h2>
       <div className="grid gap-3 md:grid-cols-3 lg:grid-cols-6">
         {stages.map((s) => (
           <Link key={s.to} to={s.to} className="group relative rounded-lg border bg-card p-4 transition hover:border-primary hover:shadow-sm">
@@ -73,7 +82,7 @@ function Overview() {
           </div>
           <div className="mt-2 flex justify-between font-mono text-[10px] text-muted-foreground"><span>-14h</span><span>now</span></div>
         </Panel>
-        <Panel title="Live pipeline state">
+        <Panel title="Sample pipeline state">
           <ul className="space-y-2 text-sm">
             {(["Refined", "Parsing", "In Review", "Queued"] as const).map((s) => (
               <li key={s} className="flex justify-between"><span className="text-muted-foreground">{s}</span><span className="font-mono">{docs.filter((d) => d.status === s).length}</span></li>

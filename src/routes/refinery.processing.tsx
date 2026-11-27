@@ -3,10 +3,14 @@ import { useState } from "react";
 import { CheckCircle2 } from "lucide-react";
 import { PageHeader, Panel, Pill } from "@/components/AppShell";
 import { chunks, sampleContract } from "@/lib/data";
+import { FinancialFacts } from "@/components/refinery/FinancialFacts";
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/refinery/processing")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { title: "Refinery Engine — Data Toolkit for Sheets" },
       { name: "description", content: "Layout-aware parsing, intelligent chunking and machine-ready JSON contracts." },
       { property: "og:title", content: "Refinery Engine — Data Toolkit for Sheets" },
@@ -27,15 +31,16 @@ const blocks: Block[] = [
 const kindStyle = { heading: "border-chart-4 bg-chart-4/10", text: "border-chart-1 bg-chart-1/10", kv: "border-chart-3 bg-chart-3/15", table: "border-chart-2 bg-chart-2/15" };
 
 function Refinery() {
-  const [tab, setTab] = useState<"layout" | "chunk" | "json">("layout");
+  const [tab, setTab] = useState<"facts" | "layout" | "chunk" | "json">("facts");
   return (
     <>
       <PageHeader eyebrow="Stage 2 · Refine" title="Data Refinery & Processing Engine" desc="Every document is decomposed by visual layout, enriched with entities and metadata, chunked for retrieval and emitted as a schema-validated JSON contract." />
-      <div className="mb-4 inline-flex rounded-md border bg-card p-1 text-sm">
-        {([["layout", "Layout-aware parsing"], ["chunk", "Chunking & enrichment"], ["json", "JSON contract"]] as const).map(([k, l]) => (
-          <button key={k} onClick={() => setTab(k)} className={`rounded px-3 py-1.5 ${tab === k ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"}`}>{l}</button>
+      <div className="mb-4 flex flex-wrap gap-1 rounded-md border bg-card p-1 text-sm">
+        {([["facts", "Auditable financial facts"], ["layout", "Layout-aware parsing"], ["chunk", "Chunking & enrichment"], ["json", "JSON contract"]] as const).map(([k, l]) => (
+          <Button size="sm" variant={tab === k ? "default" : "ghost"} key={k} onClick={() => setTab(k)}>{l}</Button>
         ))}
       </div>
+      {tab === "facts" && <FinancialFacts />}
       {tab === "layout" && <Layout />}
       {tab === "chunk" && <Chunking />}
       {tab === "json" && <Contract />}

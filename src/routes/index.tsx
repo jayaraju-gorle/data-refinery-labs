@@ -6,6 +6,8 @@ import { PostCard } from "@/components/PostCard";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { title: "Data Toolkit for Sheets - Advanced Data Tools for Spreadsheets" },
       { name: "description", content: "Your all-in-one data & cricket hub: API tool, cricket stats and the new Enterprise Data Refinery for Google Sheets." },
       { property: "og:title", content: "Data Toolkit for Sheets - Your All-in-One Data & Cricket Hub" },

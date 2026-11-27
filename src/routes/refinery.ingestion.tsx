@@ -7,6 +7,8 @@ import { docs as seed, type Doc } from "@/lib/data";
 export const Route = createFileRoute("/refinery/ingestion")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { title: "Sourcing & Ingestion — Data Toolkit for Sheets" },
       { name: "description", content: "Multi-format ingestion of filings, transcripts, statements, research and press releases with lineage." },
       { property: "og:title", content: "Sourcing & Ingestion — Data Toolkit for Sheets" },

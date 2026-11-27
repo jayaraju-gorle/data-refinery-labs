@@ -7,6 +7,8 @@ import { exceptions as seed, docById, type Exception } from "@/lib/data";
 export const Route = createFileRoute("/refinery/curation")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { title: "Curation Workbench — Data Toolkit for Sheets" },
       { name: "description", content: "Human-in-the-loop exception queue with steward review, inline correction and audit log." },
       { property: "og:title", content: "Curation Workbench — Data Toolkit for Sheets" },

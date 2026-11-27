@@ -7,6 +7,8 @@ import { PageHeader } from "@/components/AppShell";
 export const Route = createFileRoute("/blog")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { title: "Blog — Data Toolkit for Sheets" },
       { name: "description", content: "Guides on automating API calls in Google Sheets plus cricket series coverage and match reports." },
       { property: "og:title", content: "Blog — Data Toolkit for Sheets" },

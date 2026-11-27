@@ -1,8 +1,11 @@
 import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
+import { FinancialProvider } from "@/components/refinery/FinancialContext";
 
 export const Route = createFileRoute("/refinery")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { title: "Enterprise Data Refinery — Data Toolkit for Sheets" },
       { name: "description", content: "Turn filings, transcripts and statements into validated, machine-ready data for Google Sheets and AI agents." },
       { property: "og:title", content: "Enterprise Data Refinery — Data Toolkit for Sheets" },
@@ -38,7 +41,8 @@ function RefineryLayout() {
           </Link>
         ))}
       </div>
-      <Outlet />
+      <div className="mb-4 flex flex-wrap items-center gap-2 text-xs text-muted-foreground"><span className="rounded bg-warning/15 px-2 py-1 font-medium text-foreground">Prototype · fictional financial data</span><span>Independent showcase · not affiliated with FactSet</span></div>
+      <FinancialProvider><Outlet /></FinancialProvider>
     </>
   );
 }
