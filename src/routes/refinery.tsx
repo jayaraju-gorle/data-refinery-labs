@@ -41,7 +41,6 @@ function RefineryLayout() {
           </Link>
         ))}
       </div>
-      <div className="mb-4 flex flex-wrap items-center gap-2 text-xs text-muted-foreground"><span className="rounded bg-warning/15 px-2 py-1 font-medium text-foreground">Prototype · fictional financial data</span><span>Independent showcase · not affiliated with FactSet</span></div>
       <FinancialProvider><Outlet /></FinancialProvider>
     </>
   );
